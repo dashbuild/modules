@@ -1,0 +1,145 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-wide.css");
+
+/*
+ * SonarQube module theme
+ *
+ * Dark palette inspired by the SonarQube UI.
+ * Font: Inter (loaded from Google Fonts).
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ── Custom properties ─────────────────────────────────────────────── */
+
+:root {
+  /* Base theme */
+  --theme-foreground: #e1e6f3;
+  --theme-foreground-muted: #8b92a8;
+  --theme-foreground-faint: #555c72;
+  --theme-foreground-fainter: #3d4459;
+  --theme-foreground-faintest: #2f3548;
+  --theme-foreground-focus: #4b9fd5;
+  --theme-background: rgb(29, 33, 47);
+  --theme-background-alt: rgb(42, 47, 64);
+
+  /* Typography */
+  --theme-font: "Inter", system-ui, sans-serif;
+  --theme-font-alt: "Inter", system-ui, sans-serif;
+
+  /* SonarQube brand */
+  --sonar-primary: #4b9fd5;
+  --sonar-primary-dark: #236a97;
+  --sonar-secondary: #cae3f2;
+
+  /* Rating badge backgrounds (A–E, green → red) */
+  --sonar-a: #3d8c40;
+  --sonar-b: #6d9a1f;
+  --sonar-c: #c49a0a;
+  --sonar-d: #c46d1a;
+  --sonar-e: #b33039;
+
+  /* Severity palette */
+  --sonar-blocker: #d4333f;
+  --sonar-critical: #ed7d20;
+  --sonar-major: #eabe06;
+  --sonar-minor: #b0d513;
+  --sonar-info: #4b9fd5;
+
+  /* Borders & dividers */
+  --sonar-border: rgb(99, 113, 146);
+  --sonar-divider: rgba(99, 113, 146, 0.4);
+
+  /* Muted chart colors (desaturated for graphs) */
+  --sonar-chart-green: #5a9a6e;
+  --sonar-chart-yellow: #b8a855;
+  --sonar-chart-orange: #b8875a;
+  --sonar-chart-red: #a85a65;
+  --sonar-chart-blue: #6a9ab8;
+
+  /* Trend arrow colors */
+  --sonar-trend-up: #6aab7d;
+  --sonar-trend-down: #ab6a75;
+  --sonar-trend-flat: var(--theme-foreground-muted);
+
+  /* Neutral trend aliases (used by shared trendChart component) */
+  --dash-trend-up: var(--sonar-trend-up);
+  --dash-trend-down: var(--sonar-trend-down);
+  --dash-trend-flat: var(--sonar-trend-flat);
+}
+
+/* ── Base elements ─────────────────────────────────────────────────── */
+
+body {
+  font-family: var(--theme-font);
+}
+
+/* ── Top bar divider ───────────────────────────────────────────────── */
+
+#observablehq-header {
+  border-bottom: 1px solid var(--sonar-divider);
+}
+
+/* ── Section headings ──────────────────────────────────────────────── */
+
+h2 {
+  border-bottom: 1px solid var(--sonar-divider);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ── Cards ─────────────────────────────────────────────────────────── */
+
+.card {
+  border: 1px solid var(--sonar-border);
+  border-radius: 0.4rem;
+}
+
+.card h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--theme-foreground-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card svg {
+  width: 100%;
+}
+
+/* ── Summary cards ─────────────────────────────────────────────────── */
+
+.summary-card {
+  text-align: center;
+  padding: 0.75rem;
+}
+
+.summary-card .big {
+  font-size: 1.6rem;
+}
+
+/* ── Rating badge — white letter inside colored circle ─────────────── */
+
+.sonar-rating {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  line-height: 1;
+}
+
+.skel-cards-3 {
+  min-height: 100px;
+}

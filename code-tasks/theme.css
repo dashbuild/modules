@@ -1,0 +1,417 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-wide.css");
+
+/*
+ * Code Tasks module theme
+ *
+ * GitHub dark palette for a familiar code-review feel.
+ * Font: Inter for UI, system monospace for code blocks.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ── Custom properties ─────────────────────────────────────────────── */
+
+:root {
+  /* Base theme — GitHub dark */
+  --theme-foreground: #e6edf3;
+  --theme-foreground-muted: #8b949e;
+  --theme-foreground-faint: #6e7681;
+  --theme-foreground-fainter: #484f58;
+  --theme-foreground-faintest: #30363d;
+  --theme-foreground-focus: #58a6ff;
+  --theme-background: #0d1117;
+  --theme-background-alt: #161b22;
+
+  /* Typography */
+  --theme-font: "Inter", system-ui, sans-serif;
+  --theme-font-alt: "Inter", system-ui, sans-serif;
+
+  /* GitHub accent colors */
+  --gh-blue: #58a6ff;
+  --gh-green: #3fb950;
+  --gh-red: #f85149;
+  --gh-orange: #d29922;
+  --gh-purple: #bc8cff;
+  --gh-pink: #f778ba;
+  --gh-gray: #8b949e;
+
+  /* Borders & dividers */
+  --gh-border: #30363d;
+  --gh-border-muted: #21262d;
+
+  /* Code block */
+  --gh-code-bg: #0d1117;
+  --gh-code-header-bg: #161b22;
+  --gh-code-highlight: rgba(88, 166, 255, 0.1);
+  --gh-code-task-highlight: rgba(210, 153, 34, 0.15);
+}
+
+/* ── Base elements ─────────────────────────────────────────────────── */
+
+body {
+  font-family: var(--theme-font);
+}
+
+/* ── Top bar divider ───────────────────────────────────────────────── */
+
+#observablehq-header {
+  border-bottom: 1px solid var(--gh-border);
+}
+
+/* ── Section headings ──────────────────────────────────────────────── */
+
+h1 {
+  color: var(--theme-foreground);
+  font-weight: 600;
+}
+
+h2 {
+  color: var(--theme-foreground);
+  border-bottom: 1px solid var(--gh-border);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ── Cards ─────────────────────────────────────────────────────────── */
+
+.card {
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  background: var(--theme-background-alt);
+}
+
+.card h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-foreground-muted);
+}
+
+/* ── Compact overview (no .card — avoids Observable loading spinner) ── */
+
+.overview-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.compact-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  min-width: 0;
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  background: var(--theme-background-alt);
+}
+
+.compact-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--theme-foreground);
+}
+
+/* ── Tag badges ────────────────────────────────────────────────────── */
+/* Uses tag-<name> classes to avoid collision with Observable's .note   */
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15em 0.6em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* ── Task code blocks ─────────────────────────────────── */
+
+.task-block-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.task-code-table {
+  max-width: max-content;
+  margin: 0px;
+}
+
+.task-block {
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--gh-code-bg);
+  max-width: none;
+  width: 100%;
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--gh-code-header-bg);
+  border-bottom: 1px solid var(--gh-border);
+  font-size: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.task-header .file-path {
+  color: var(--gh-blue);
+  font-family: monospace;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.task-header .line-number {
+  color: var(--theme-foreground-muted);
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.task-header .task-text {
+  color: var(--theme-foreground-muted);
+  font-size: 0.8rem;
+  margin-left: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50%;
+}
+
+.task-code {
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+
+.task-code table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.task-code td {
+  padding: 0 0.75rem;
+  white-space: pre;
+  border: none;
+}
+
+.task-code .line-num {
+  width: 1%;
+  min-width: 3rem;
+  text-align: right;
+  color: var(--theme-foreground-faint);
+  user-select: none;
+  padding-right: 1rem;
+  border-right: 1px solid var(--gh-border-muted);
+}
+
+.task-code .line-content {
+  padding-left: 1rem;
+}
+
+.task-code tr.task-line {
+  background: var(--gh-code-task-highlight);
+}
+
+.task-code tr.task-line .line-num {
+  color: var(--gh-orange);
+}
+
+.task-code tr.context-line {
+  background: transparent;
+}
+
+/* ── Task toggle buttons ───────────────────────────────────────────── */
+
+.task-toggle-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.task-action-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.task-action-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  background: var(--theme-background-alt);
+  color: var(--theme-foreground-muted);
+  font-family: var(--theme-font);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.task-action-btn:hover {
+  border-color: var(--theme-foreground-faint);
+  color: var(--theme-foreground);
+}
+
+.task-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  background: var(--theme-background-alt);
+  color: var(--theme-foreground-muted);
+  font-family: var(--theme-font);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  opacity: 0.5;
+}
+
+.task-toggle:hover {
+  border-color: var(--theme-foreground-faint);
+  opacity: 0.75;
+}
+
+.task-toggle.active {
+  opacity: 1;
+  color: #fff;
+}
+
+.task-toggle-count {
+  font-weight: 700;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ── Collapsible code preview ─────────────────────────────────────── */
+
+.task-collapse-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.task-collapse-icon::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--theme-foreground-faint);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.15s ease;
+}
+
+.task-block:not(.collapsed) .task-collapse-icon::before {
+  transform: rotate(90deg);
+}
+
+.task-block.collapsed .task-code {
+  display: none;
+}
+
+.task-block.collapsed .task-header {
+  border-bottom: none;
+}
+
+/* ── highlight.js GitHub-dark token colors ───────────────────── */
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #ff7b72;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type {
+  color: #a5d6ff;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #8b949e;
+}
+
+.hljs-number,
+.hljs-regexp,
+.hljs-addition,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #79c0ff;
+}
+
+.hljs-meta {
+  color: #d2a8ff;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-class {
+  color: #d2a8ff;
+}
+
+.hljs-function,
+.hljs-title.function_ {
+  color: #d2a8ff;
+}
+
+.hljs-params {
+  color: #e6edf3;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #ffa657;
+}
+
+.hljs-subst {
+  color: #e6edf3;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

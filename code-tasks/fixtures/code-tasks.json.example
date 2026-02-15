@@ -1,0 +1,406 @@
+{
+  "summary": {
+    "total": 15,
+    "byTag": {
+      "TODO": 5,
+      "FIXME": 3,
+      "HACK": 2,
+      "REVIEW": 2,
+      "NOTE": 2,
+      "BUG": 1,
+      "XXX": 0
+    },
+    "byFile": {
+      "src/utils/math.ts": 2,
+      "src/utils/string.ts": 1,
+      "src/config/loader.ts": 2,
+      "src/routes/auth.ts": 2,
+      "src/routes/users.ts": 1,
+      "src/middleware/rateLimit.ts": 2,
+      "src/services/email.ts": 1,
+      "src/components/Modal.tsx": 2,
+      "src/hooks/useForm.ts": 1,
+      "src/hooks/useAuth.ts": 1
+    },
+    "filesScanned": 42,
+    "filesWithTasks": 10
+  },
+  "tasks": [
+    {
+      "file": "src/utils/math.ts",
+      "line": 12,
+      "tag": "TODO",
+      "text": "Add support for BigInt operations",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "import { MathError } from './errors';",
+          "",
+          "/**",
+          " * Clamp a number between min and max bounds.",
+          " */"
+        ],
+        "taskLine": "// TODO: Add support for BigInt operations",
+        "after": [
+          "export function clamp(value: number, min: number, max: number): number {",
+          "  if (min > max) {",
+          "    throw new MathError('min must be less than max');",
+          "  }",
+          "  return Math.min(Math.max(value, min), max);"
+        ],
+        "startLine": 7
+      }
+    },
+    {
+      "file": "src/utils/math.ts",
+      "line": 34,
+      "tag": "FIXME",
+      "text": "This loses precision for very large numbers",
+      "language": "typescript",
+      "context": {
+        "before": [
+          " * Rounds a number to a specified number of decimal places.",
+          " */",
+          "export function roundTo(value: number, decimals: number): number {",
+          "  const factor = Math.pow(10, decimals);",
+          ""
+        ],
+        "taskLine": "  // FIXME: This loses precision for very large numbers",
+        "after": [
+          "  return Math.round(value * factor) / factor;",
+          "}",
+          "",
+          "/**",
+          " * Calculate the percentage of a value relative to a total."
+        ],
+        "startLine": 29
+      }
+    },
+    {
+      "file": "src/utils/string.ts",
+      "line": 8,
+      "tag": "NOTE",
+      "text": "This regex handles most common cases but not all Unicode",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "/**",
+          " * Convert a string to title case.",
+          " * Handles hyphenated words and common prepositions.",
+          " */",
+          "export function toTitleCase(input: string): string {"
+        ],
+        "taskLine": "  // NOTE: This regex handles most common cases but not all Unicode",
+        "after": [
+          "  return input",
+          "    .toLowerCase()",
+          "    .split(/[\\s-]+/)",
+          "    .map((word, i) => {",
+          "      if (i > 0 && PREPOSITIONS.has(word)) return word;"
+        ],
+        "startLine": 3
+      }
+    },
+    {
+      "file": "src/config/loader.ts",
+      "line": 22,
+      "tag": "TODO",
+      "text": "Support YAML config files in addition to JSON",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "const CONFIG_PATHS = [",
+          "  'config.json',",
+          "  '.config.json',",
+          "  'config/default.json',",
+          "];"
+        ],
+        "taskLine": "// TODO: Support YAML config files in addition to JSON",
+        "after": [
+          "",
+          "export async function loadConfig(basePath: string): Promise<Config> {",
+          "  for (const configPath of CONFIG_PATHS) {",
+          "    const fullPath = path.join(basePath, configPath);",
+          "    if (await fileExists(fullPath)) {"
+        ],
+        "startLine": 17
+      }
+    },
+    {
+      "file": "src/config/loader.ts",
+      "line": 45,
+      "tag": "HACK",
+      "text": "Using JSON.parse with a reviver to handle Date objects",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "  const raw = await fs.readFile(filePath, 'utf-8');",
+          "",
+          "  let parsed: unknown;",
+          "  try {",
+          ""
+        ],
+        "taskLine": "    // HACK: Using JSON.parse with a reviver to handle Date objects",
+        "after": [
+          "    parsed = JSON.parse(raw, (key, value) => {",
+          "      if (typeof value === 'string' && ISO_DATE_RE.test(value)) {",
+          "        return new Date(value);",
+          "      }",
+          "      return value;"
+        ],
+        "startLine": 40
+      }
+    },
+    {
+      "file": "src/routes/auth.ts",
+      "line": 18,
+      "tag": "REVIEW",
+      "text": "Should we rate-limit login attempts per IP or per account?",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "import { validateCredentials } from '../services/auth';",
+          "import { createSession } from '../services/session';",
+          "",
+          "const router = new Router();",
+          ""
+        ],
+        "taskLine": "// REVIEW: Should we rate-limit login attempts per IP or per account?",
+        "after": [
+          "router.post('/login', async (ctx) => {",
+          "  const { email, password } = ctx.request.body;",
+          "",
+          "  if (!email || !password) {",
+          "    ctx.status = 400;"
+        ],
+        "startLine": 13
+      }
+    },
+    {
+      "file": "src/routes/auth.ts",
+      "line": 56,
+      "tag": "TODO",
+      "text": "Implement refresh token rotation",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "  ctx.body = { token: session.token, expiresAt: session.expiresAt };",
+          "});",
+          "",
+          "router.post('/refresh', async (ctx) => {",
+          "  const { refreshToken } = ctx.request.body;"
+        ],
+        "taskLine": "  // TODO: Implement refresh token rotation",
+        "after": [
+          "  const session = await refreshSession(refreshToken);",
+          "  if (!session) {",
+          "    ctx.status = 401;",
+          "    ctx.body = { error: 'Invalid refresh token' };",
+          "    return;"
+        ],
+        "startLine": 51
+      }
+    },
+    {
+      "file": "src/routes/users.ts",
+      "line": 31,
+      "tag": "FIXME",
+      "text": "Pagination is broken when filter returns zero results",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "router.get('/users', requireAuth, async (ctx) => {",
+          "  const page = parseInt(ctx.query.page as string) || 1;",
+          "  const limit = parseInt(ctx.query.limit as string) || 20;",
+          "  const filter = ctx.query.filter as string;",
+          ""
+        ],
+        "taskLine": "  // FIXME: Pagination is broken when filter returns zero results",
+        "after": [
+          "  const offset = (page - 1) * limit;",
+          "  const users = await db.users.findMany({",
+          "    where: filter ? { name: { contains: filter } } : undefined,",
+          "    skip: offset,",
+          "    take: limit,"
+        ],
+        "startLine": 26
+      }
+    },
+    {
+      "file": "src/middleware/rateLimit.ts",
+      "line": 8,
+      "tag": "TODO",
+      "text": "Replace in-memory store with Redis for multi-instance deployments",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "import { Context, Next } from 'koa';",
+          "",
+          "interface RateLimitEntry {",
+          "  count: number;",
+          "  resetAt: number;"
+        ],
+        "taskLine": "// TODO: Replace in-memory store with Redis for multi-instance deployments",
+        "after": [
+          "const store = new Map<string, RateLimitEntry>();",
+          "",
+          "function cleanupExpired() {",
+          "  const now = Date.now();",
+          "  for (const [key, entry] of store) {"
+        ],
+        "startLine": 3
+      }
+    },
+    {
+      "file": "src/middleware/rateLimit.ts",
+      "line": 42,
+      "tag": "HACK",
+      "text": "Using X-Forwarded-For header directly without validation",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "export function rateLimit(options: RateLimitOptions = {}) {",
+          "  const { windowMs = 60000, max = 100 } = options;",
+          "",
+          "  return async (ctx: Context, next: Next) => {",
+          ""
+        ],
+        "taskLine": "    // HACK: Using X-Forwarded-For header directly without validation",
+        "after": [
+          "    const ip = (ctx.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim()",
+          "      || ctx.ip;",
+          "",
+          "    const now = Date.now();",
+          "    const entry = store.get(ip);"
+        ],
+        "startLine": 37
+      }
+    },
+    {
+      "file": "src/services/email.ts",
+      "line": 15,
+      "tag": "BUG",
+      "text": "HTML entities in subject line are not escaped properly",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "const transporter = nodemailer.createTransport(config.smtp);",
+          "",
+          "export async function sendEmail(options: EmailOptions): Promise<void> {",
+          "  const { to, subject, html, text } = options;",
+          ""
+        ],
+        "taskLine": "  // BUG: HTML entities in subject line are not escaped properly",
+        "after": [
+          "  await transporter.sendMail({",
+          "    from: config.smtp.from,",
+          "    to,",
+          "    subject,",
+          "    html,"
+        ],
+        "startLine": 10
+      }
+    },
+    {
+      "file": "src/components/Modal.tsx",
+      "line": 24,
+      "tag": "TODO",
+      "text": "Add keyboard trap for accessibility (Tab cycling within modal)",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "  const overlayRef = useRef<HTMLDivElement>(null);",
+          "",
+          "  useEffect(() => {",
+          "    if (!isOpen) return;",
+          ""
+        ],
+        "taskLine": "    // TODO: Add keyboard trap for accessibility (Tab cycling within modal)",
+        "after": [
+          "    const handleEscape = (e: KeyboardEvent) => {",
+          "      if (e.key === 'Escape') onClose();",
+          "    };",
+          "",
+          "    document.addEventListener('keydown', handleEscape);"
+        ],
+        "startLine": 19
+      }
+    },
+    {
+      "file": "src/components/Modal.tsx",
+      "line": 52,
+      "tag": "REVIEW",
+      "text": "Consider using a portal instead of rendering inline",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "  if (!isOpen) return null;",
+          "",
+          "  return (",
+          "    <>",
+          ""
+        ],
+        "taskLine": "      {/* REVIEW: Consider using a portal instead of rendering inline */}",
+        "after": [
+          "      <div",
+          "        ref={overlayRef}",
+          "        className=\"modal-overlay\"",
+          "        onClick={handleOverlayClick}",
+          "      >"
+        ],
+        "startLine": 47
+      }
+    },
+    {
+      "file": "src/hooks/useForm.ts",
+      "line": 38,
+      "tag": "FIXME",
+      "text": "Validation runs on every keystroke, should debounce",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "  const handleChange = useCallback(",
+          "    (field: keyof T) => (e: ChangeEvent<HTMLInputElement>) => {",
+          "      const value = e.target.value;",
+          "      setValues((prev) => ({ ...prev, [field]: value }));",
+          ""
+        ],
+        "taskLine": "      // FIXME: Validation runs on every keystroke, should debounce",
+        "after": [
+          "      if (schema) {",
+          "        const result = schema.safeParse({ ...values, [field]: value });",
+          "        if (!result.success) {",
+          "          const fieldErrors = result.error.flatten().fieldErrors;",
+          "          setErrors((prev) => ({ ...prev, ...fieldErrors }));"
+        ],
+        "startLine": 33
+      }
+    },
+    {
+      "file": "src/hooks/useAuth.ts",
+      "line": 19,
+      "tag": "NOTE",
+      "text": "Token is stored in localStorage for simplicity; consider httpOnly cookies for production",
+      "language": "typescript",
+      "context": {
+        "before": [
+          "export function useAuth() {",
+          "  const [user, setUser] = useState<User | null>(null);",
+          "  const [loading, setLoading] = useState(true);",
+          "",
+          ""
+        ],
+        "taskLine": "  // NOTE: Token is stored in localStorage for simplicity; consider httpOnly cookies for production",
+        "after": [
+          "  useEffect(() => {",
+          "    const token = localStorage.getItem('auth_token');",
+          "    if (token) {",
+          "      fetchUser(token)",
+          "        .then(setUser)"
+        ],
+        "startLine": 14
+      }
+    }
+  ],
+  "tags": ["TODO", "FIXME", "HACK", "REVIEW", "NOTE", "BUG", "XXX"]
+}
