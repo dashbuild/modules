@@ -1,0 +1,97 @@
+name: "Dashbuild JavaScript Code Statistics"
+description: "Parse coverage and test results from JavaScript/TypeScript projects and generate a report page for Dashbuild with historical tracking"
+
+inputs:
+  coverage-path:
+    description: "Directory to search for coverage files"
+    required: false
+    default: "."
+  pattern:
+    description: "Glob pattern for LCOV coverage files"
+    required: false
+    default: "**/lcov.info"
+  test-runner:
+    description: "Test runner used to generate results. Determines how test result JSON is parsed. One of: vitest, jest, cypress"
+    required: false
+    default: "vitest"
+  test-results-path:
+    description: "Path to the test runner's JSON output file. If not set, common default locations are searched automatically."
+    required: false
+    default: ""
+  cache-key:
+    description: "GitHub Actions cache key for historical data. Set to enable data-over-time tracking. Example: dashbuild-js-code-stats-history"
+    required: false
+    default: ""
+  retention-days:
+    description: "Number of days of historical data to keep. Entries older than this are pruned before caching. 0 = keep all. Default: 90"
+    required: false
+    default: "90"
+  enable-tests:
+    description: "Whether to parse and display test results. Set to 'false' to disable the Testing and Test Results sections."
+    required: false
+    default: false
+  enable-coverage:
+    description: "Whether to parse and display code coverage data. Set to 'false' to disable the Coverage section."
+    required: false
+    default: false
+  source-patterns:
+    description: "Comma-separated glob patterns for source files to include when counting lines and files. Default scans all JS/TS files excluding node_modules, dist, .next, and build directories."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Restore historical data from cache
+      if: inputs.cache-key != ''
+      uses: actions/cache/restore@v4
+      with:
+        path: .dashbuild-js-code-stats-cache
+        key: ${{ inputs.cache-key }}
+
+    - name: Parse coverage and test results
+      shell: bash
+      env:
+        COVERAGE_PATH: ${{ inputs.coverage-path }}
+        COVERAGE_PATTERN: ${{ inputs.pattern }}
+        TEST_RUNNER: ${{ inputs.test-runner }}
+        TEST_RESULTS_PATH: ${{ inputs.test-results-path }}
+        CACHE_FILE: ${{ inputs.cache-key != '' && '.dashbuild-js-code-stats-cache/js-code-stats.json' || '' }}
+        RETENTION_DAYS: ${{ inputs.retention-days }}
+        ENABLE_TESTS: ${{ inputs.enable-tests }}
+        ENABLE_COVERAGE: ${{ inputs.enable-coverage }}
+        SOURCE_PATTERNS: ${{ inputs.source-patterns }}
+      run: |
+        node "${{ github.action_path }}/scripts/parse-tests.js"
+
+    - name: Save historical data to cache
+      if: inputs.cache-key != ''
+      uses: actions/cache/save@v4
+      with:
+        path: .dashbuild-js-code-stats-cache
+        key: ${{ inputs.cache-key }}-${{ github.run_id }}
+
+    - name: Resolve Dashbuild root
+      shell: bash
+      run: |
+        _DIR="    "
+        while true; do
+          if [ -f "${_DIR}/package.json" ] && node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.exit(p.name==='dashbuild'?0:1)" "${_DIR}/package.json"; then
+            break
+          fi
+          [ "${_DIR}" = "/" ] && echo "::error::Cannot find Dashbuild root" && exit 1
+          _DIR="$(dirname "${_DIR}")"
+        done
+        echo "DASHBUILD_ROOT=${_DIR}" >> "$GITHUB_ENV"
+
+    - name: Generate report page
+      shell: bash
+      run: node "${DASHBUILD_ROOT}/_shared/lib/generate-page.js" "${{ github.action_path }}"
+
+    - name: Generate overview
+      shell: bash
+      run: node "${{ github.action_path }}/scripts/generate-overview.js"
+
+    - name: Register module
+      shell: bash
+      run: node "${DASHBUILD_ROOT}/_shared/lib/register-module.js" "${{ github.action_path }}"

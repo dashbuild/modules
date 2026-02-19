@@ -1,0 +1,92 @@
+name: "Dashbuild Dependabot"
+description: "Fetch dependency vulnerabilities, code scanning, and secret scanning alerts from GitHub and generate a report page for Dashbuild"
+
+inputs:
+  token:
+    description: "GitHub token with security_events scope. The default GITHUB_TOKEN works for Dependabot alerts, code scanning, and secret scanning on the same repo."
+    required: false
+    default: ${{ github.token }}
+  repository:
+    description: "GitHub repository in owner/repo format"
+    required: false
+    default: ${{ github.repository }}
+  areas:
+    description: "Comma-separated alert types to fetch/display. Options: dependabot,code-scanning,secret-scanning"
+    required: false
+    default: "dependabot,code-scanning,secret-scanning"
+  cache-key:
+    description: "GitHub Actions cache key for historical data. Set to enable data-over-time tracking. Example: dashbuild-dependabot-history"
+    required: false
+    default: ""
+  retention-days:
+    description: "Number of days of historical data to keep. Entries older than this are pruned before caching. 0 = keep all. Default: 90"
+    required: false
+    default: "90"
+  data-file:
+    description: "Path to a pre-built JSON data file. When set, the API fetch is skipped and this file is used directly."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Use pre-built data file
+      if: inputs.data-file != ''
+      shell: bash
+      run: |
+        SLUG=$(node -e "console.log(JSON.parse(require('fs').readFileSync('${{ github.action_path }}/module.json','utf-8')).slug)")
+        TARGET="${DASHBUILD_DIR}/src/data/${SLUG}.json"
+        mkdir -p "$(dirname "${TARGET}")"
+        cp "${{ inputs.data-file }}" "${TARGET}"
+        echo "::notice::Using pre-built data file: ${{ inputs.data-file }}"
+
+    - name: Restore historical data from cache
+      if: inputs.data-file == '' && inputs.cache-key != ''
+      uses: actions/cache/restore@v4
+      with:
+        path: .dashbuild-dependabot-cache
+        key: ${{ inputs.cache-key }}
+
+    - name: Fetch security alerts
+      if: inputs.data-file == ''
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        DEPENDABOT_REPOSITORY: ${{ inputs.repository }}
+        DEPENDABOT_AREAS: ${{ inputs.areas }}
+        DEPENDABOT_CACHE_FILE: ${{ inputs.cache-key != '' && '.dashbuild-dependabot-cache/dependabot.json' || '' }}
+        DEPENDABOT_RETENTION_DAYS: ${{ inputs.retention-days }}
+      run: |
+        node "${{ github.action_path }}/scripts/fetch-dependabot.js"
+
+    - name: Save historical data to cache
+      if: inputs.data-file == '' && inputs.cache-key != ''
+      uses: actions/cache/save@v4
+      with:
+        path: .dashbuild-dependabot-cache
+        key: ${{ inputs.cache-key }}-${{ github.run_id }}
+
+    - name: Resolve Dashbuild root
+      shell: bash
+      run: |
+        _DIR="    "
+        while true; do
+          if [ -f "${_DIR}/package.json" ] && node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.exit(p.name==='dashbuild'?0:1)" "${_DIR}/package.json"; then
+            break
+          fi
+          [ "${_DIR}" = "/" ] && echo "::error::Cannot find Dashbuild root" && exit 1
+          _DIR="$(dirname "${_DIR}")"
+        done
+        echo "DASHBUILD_ROOT=${_DIR}" >> "$GITHUB_ENV"
+
+    - name: Generate report page
+      shell: bash
+      run: node "${DASHBUILD_ROOT}/_shared/lib/generate-page.js" "${{ github.action_path }}"
+
+    - name: Generate overview
+      shell: bash
+      run: node "${{ github.action_path }}/scripts/generate-overview.js"
+
+    - name: Register module
+      shell: bash
+      run: node "${DASHBUILD_ROOT}/_shared/lib/register-module.js" "${{ github.action_path }}"

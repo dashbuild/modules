@@ -1,0 +1,6 @@
+{
+  "name": "SonarQube Overall",
+  "slug": "sonarqube",
+  "section": "Integrations",
+  "description": "Code quality metrics from SonarQube/SonarCloud"
+}

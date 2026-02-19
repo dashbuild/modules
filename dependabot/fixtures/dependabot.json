@@ -1,0 +1,412 @@
+{
+  "config": {
+    "areas": ["dependabot", "code-scanning", "secret-scanning"],
+    "repository": "boffinwritescode/dashbuild"
+  },
+  "history": [
+    {
+      "date": "2026-02-03",
+      "metrics": {
+        "dependabot_critical": 2,
+        "dependabot_high": 5,
+        "dependabot_medium": 8,
+        "dependabot_low": 5,
+        "dependabot_total_open": 20,
+        "dependabot_fixed_30d": 1,
+        "code_scanning_errors": 2,
+        "code_scanning_warnings": 7,
+        "code_scanning_notes": 16,
+        "code_scanning_total_open": 25,
+        "secret_scanning_open": 2,
+        "secret_scanning_resolved": 0,
+        "dependabot_prs_open": 5,
+        "dependabot_prs_merged_30d": 3
+      }
+    },
+    {
+      "date": "2026-02-06",
+      "metrics": {
+        "dependabot_critical": 1,
+        "dependabot_high": 4,
+        "dependabot_medium": 7,
+        "dependabot_low": 5,
+        "dependabot_total_open": 17,
+        "dependabot_fixed_30d": 4,
+        "code_scanning_errors": 1,
+        "code_scanning_warnings": 6,
+        "code_scanning_notes": 15,
+        "code_scanning_total_open": 22,
+        "secret_scanning_open": 1,
+        "secret_scanning_resolved": 1,
+        "dependabot_prs_open": 4,
+        "dependabot_prs_merged_30d": 5
+      }
+    },
+    {
+      "date": "2026-02-10",
+      "metrics": {
+        "dependabot_critical": 1,
+        "dependabot_high": 3,
+        "dependabot_medium": 6,
+        "dependabot_low": 4,
+        "dependabot_total_open": 14,
+        "dependabot_fixed_30d": 7,
+        "code_scanning_errors": 1,
+        "code_scanning_warnings": 5,
+        "code_scanning_notes": 14,
+        "code_scanning_total_open": 20,
+        "secret_scanning_open": 1,
+        "secret_scanning_resolved": 1,
+        "dependabot_prs_open": 4,
+        "dependabot_prs_merged_30d": 7
+      }
+    },
+    {
+      "date": "2026-02-12",
+      "metrics": {
+        "dependabot_critical": 0,
+        "dependabot_high": 3,
+        "dependabot_medium": 5,
+        "dependabot_low": 4,
+        "dependabot_total_open": 12,
+        "dependabot_fixed_30d": 9,
+        "code_scanning_errors": 0,
+        "code_scanning_warnings": 4,
+        "code_scanning_notes": 13,
+        "code_scanning_total_open": 17,
+        "secret_scanning_open": 0,
+        "secret_scanning_resolved": 2,
+        "dependabot_prs_open": 3,
+        "dependabot_prs_merged_30d": 9
+      }
+    },
+    {
+      "date": "2026-02-14",
+      "metrics": {
+        "dependabot_critical": 0,
+        "dependabot_high": 2,
+        "dependabot_medium": 5,
+        "dependabot_low": 3,
+        "dependabot_total_open": 10,
+        "dependabot_fixed_30d": 11,
+        "code_scanning_errors": 0,
+        "code_scanning_warnings": 3,
+        "code_scanning_notes": 12,
+        "code_scanning_total_open": 15,
+        "secret_scanning_open": 0,
+        "secret_scanning_resolved": 2,
+        "dependabot_prs_open": 2,
+        "dependabot_prs_merged_30d": 11
+      }
+    },
+    {
+      "date": "2026-02-17",
+      "metrics": {
+        "dependabot_critical": 1,
+        "dependabot_high": 3,
+        "dependabot_medium": 5,
+        "dependabot_low": 4,
+        "dependabot_total_open": 13,
+        "dependabot_fixed_30d": 12,
+        "code_scanning_errors": 1,
+        "code_scanning_warnings": 4,
+        "code_scanning_notes": 10,
+        "code_scanning_total_open": 15,
+        "secret_scanning_open": 0,
+        "secret_scanning_resolved": 2,
+        "dependabot_prs_open": 3,
+        "dependabot_prs_merged_30d": 12
+      }
+    }
+  ],
+  "details": {
+    "dependabotAlerts": [
+      {
+        "number": 55,
+        "severity": "critical",
+        "package": "axios",
+        "ecosystem": "npm",
+        "cve": "CVE-2024-39338",
+        "cvss": 9.8,
+        "summary": "Server-Side Request Forgery in axios allows remote attackers to bypass access controls via crafted URL",
+        "createdAt": "2026-02-16T09:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/55",
+        "manifestPath": "packages/server/package.json"
+      },
+      {
+        "number": 52,
+        "severity": "high",
+        "package": "jsonwebtoken",
+        "ecosystem": "npm",
+        "cve": "CVE-2022-23529",
+        "cvss": 7.6,
+        "summary": "jsonwebtoken's insecure implementation of key retrieval function could lead to Forgeable Public/Private Tokens",
+        "createdAt": "2026-02-12T08:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/52",
+        "manifestPath": "packages/server/package.json"
+      },
+      {
+        "number": 48,
+        "severity": "high",
+        "package": "semver",
+        "ecosystem": "npm",
+        "cve": "CVE-2022-25883",
+        "cvss": 7.5,
+        "summary": "semver vulnerable to Regular Expression Denial of Service",
+        "createdAt": "2026-01-15T08:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/48",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 45,
+        "severity": "high",
+        "package": "ip",
+        "ecosystem": "npm",
+        "cve": "CVE-2024-29415",
+        "cvss": 7.0,
+        "summary": "ip SSRF improper categorization in isPublic allows attackers to craft IPs that bypass validation",
+        "createdAt": "2026-01-20T10:30:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/45",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 42,
+        "severity": "medium",
+        "package": "express",
+        "ecosystem": "npm",
+        "cve": "CVE-2024-29041",
+        "cvss": 6.1,
+        "summary": "Express.js Open Redirect in malformed URLs allows phishing via response.redirect()",
+        "createdAt": "2025-12-20T09:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/42",
+        "manifestPath": "packages/server/package.json"
+      },
+      {
+        "number": 40,
+        "severity": "medium",
+        "package": "webpack-dev-middleware",
+        "ecosystem": "npm",
+        "cve": "CVE-2024-29180",
+        "cvss": 5.9,
+        "summary": "Path traversal in webpack-dev-middleware allows reading arbitrary files outside the served directory",
+        "createdAt": "2025-12-15T11:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/40",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 38,
+        "severity": "medium",
+        "package": "braces",
+        "ecosystem": "npm",
+        "cve": "CVE-2024-4068",
+        "cvss": 5.3,
+        "summary": "Uncontrolled resource consumption in braces leads to denial of service via deeply nested patterns",
+        "createdAt": "2026-01-05T14:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/38",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 35,
+        "severity": "medium",
+        "package": "tar",
+        "ecosystem": "npm",
+        "cve": "CVE-2024-28863",
+        "cvss": 5.5,
+        "summary": "tar affected by Regular Expression Denial of Service (ReDoS) when parsing malformed headers",
+        "createdAt": "2025-12-10T08:30:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/35",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 32,
+        "severity": "medium",
+        "package": "django",
+        "ecosystem": "pip",
+        "cve": "CVE-2024-27351",
+        "cvss": 5.8,
+        "summary": "Potential ReDoS in django.utils.text.Truncator.words() via crafted input strings",
+        "createdAt": "2025-12-01T10:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/32",
+        "manifestPath": "tools/requirements.txt"
+      },
+      {
+        "number": 28,
+        "severity": "low",
+        "package": "tough-cookie",
+        "ecosystem": "npm",
+        "cve": "CVE-2023-26136",
+        "cvss": 3.1,
+        "summary": "tough-cookie Prototype Pollution via cookie parsing allows property injection on Object.prototype",
+        "createdAt": "2025-11-20T07:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/28",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 25,
+        "severity": "low",
+        "package": "word-wrap",
+        "ecosystem": "npm",
+        "cve": "CVE-2023-26115",
+        "cvss": 3.7,
+        "summary": "Regular Expression Denial of Service in word-wrap when processing long strings with special characters",
+        "createdAt": "2025-11-15T12:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/25",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 22,
+        "severity": "low",
+        "package": "postcss",
+        "ecosystem": "npm",
+        "cve": "CVE-2023-44270",
+        "cvss": 3.1,
+        "summary": "PostCSS line return parsing error may cause incorrect CSS output in certain edge cases",
+        "createdAt": "2025-11-01T09:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/22",
+        "manifestPath": "package-lock.json"
+      },
+      {
+        "number": 18,
+        "severity": "low",
+        "package": "certifi",
+        "ecosystem": "pip",
+        "cve": "CVE-2023-37920",
+        "cvss": 3.3,
+        "summary": "Removal of e-Tugra root certificate from certifi due to trust concerns",
+        "createdAt": "2025-10-15T08:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/dependabot/18",
+        "manifestPath": "tools/requirements.txt"
+      }
+    ],
+    "codeScanningAlerts": [
+      {
+        "number": 22,
+        "severity": "error",
+        "rule": "js/prototype-polluting-assignment",
+        "tool": "CodeQL",
+        "description": "Assignment to property of Object.prototype allows prototype pollution attacks",
+        "location": { "path": "packages/server/src/utils/merge.js", "startLine": 18, "endLine": 22 },
+        "createdAt": "2026-02-14T09:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/22"
+      },
+      {
+        "number": 20,
+        "severity": "warning",
+        "rule": "js/xss",
+        "tool": "CodeQL",
+        "description": "Cross-site scripting vulnerability: user input flows into innerHTML without sanitization",
+        "location": { "path": "packages/web/src/utils/render.js", "startLine": 42, "endLine": 42 },
+        "createdAt": "2026-02-05T14:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/20"
+      },
+      {
+        "number": 18,
+        "severity": "warning",
+        "rule": "js/sql-injection",
+        "tool": "CodeQL",
+        "description": "Database query built from user-controlled sources without parameterization",
+        "location": { "path": "packages/server/src/db/queries.js", "startLine": 88, "endLine": 91 },
+        "createdAt": "2026-02-03T10:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/18"
+      },
+      {
+        "number": 16,
+        "severity": "warning",
+        "rule": "js/path-injection",
+        "tool": "CodeQL",
+        "description": "Uncontrolled data used in path expression allows reading arbitrary files",
+        "location": { "path": "packages/server/src/routes/files.js", "startLine": 23, "endLine": 23 },
+        "createdAt": "2026-01-28T16:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/16"
+      },
+      {
+        "number": 14,
+        "severity": "warning",
+        "rule": "js/insecure-randomness",
+        "tool": "CodeQL",
+        "description": "Math.random() used for security-sensitive value; use crypto.randomBytes() instead",
+        "location": { "path": "packages/server/src/services/tokens.js", "startLine": 12, "endLine": 12 },
+        "createdAt": "2026-01-22T11:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/14"
+      },
+      {
+        "number": 12,
+        "severity": "note",
+        "rule": "js/unused-local-variable",
+        "tool": "CodeQL",
+        "description": "Unused variable 'temp' in Chart component render function",
+        "location": { "path": "packages/web/src/components/Chart.jsx", "startLine": 15, "endLine": 15 },
+        "createdAt": "2026-01-25T11:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/12"
+      },
+      {
+        "number": 10,
+        "severity": "note",
+        "rule": "js/missing-await",
+        "tool": "CodeQL",
+        "description": "Missing await on Promise-returning function call in authentication middleware",
+        "location": { "path": "packages/server/src/services/auth.js", "startLine": 67, "endLine": 67 },
+        "createdAt": "2026-01-20T09:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/10"
+      },
+      {
+        "number": 8,
+        "severity": "note",
+        "rule": "js/incomplete-url-scheme-check",
+        "tool": "CodeQL",
+        "description": "Incomplete URL scheme check may allow javascript: URLs to bypass validation",
+        "location": { "path": "packages/web/src/utils/url.js", "startLine": 34, "endLine": 34 },
+        "createdAt": "2026-01-15T14:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/8"
+      },
+      {
+        "number": 6,
+        "severity": "note",
+        "rule": "js/log-injection",
+        "tool": "CodeQL",
+        "description": "User-controlled data written to log without sanitization allows log forging",
+        "location": { "path": "packages/server/src/middleware/logger.js", "startLine": 28, "endLine": 30 },
+        "createdAt": "2026-01-10T08:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/6"
+      },
+      {
+        "number": 4,
+        "severity": "note",
+        "rule": "js/regex-injection",
+        "tool": "CodeQL",
+        "description": "User-controlled string used as regular expression without escaping",
+        "location": { "path": "packages/server/src/routes/search.js", "startLine": 55, "endLine": 55 },
+        "createdAt": "2026-01-05T16:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/code-scanning/4"
+      }
+    ],
+    "secretScanningAlerts": [
+      {
+        "number": 3,
+        "secretType": "AWS Access Key ID",
+        "createdAt": "2026-01-08T10:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/secret-scanning/3"
+      },
+      {
+        "number": 2,
+        "secretType": "Slack Webhook URL",
+        "createdAt": "2025-12-20T14:00:00Z",
+        "url": "https://github.com/boffinwritescode/dashbuild/security/secret-scanning/2"
+      }
+    ],
+    "dependabotPrs": [
+      { "number": 102, "title": "Bump axios from 1.6.2 to 1.7.4", "state": "open", "createdAt": "2026-02-17T06:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/102" },
+      { "number": 99, "title": "Bump jsonwebtoken from 9.0.0 to 9.0.2", "state": "open", "createdAt": "2026-02-16T06:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/99" },
+      { "number": 96, "title": "Bump express from 4.18.2 to 4.19.2", "state": "open", "createdAt": "2026-02-15T06:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/96" },
+      { "number": 93, "title": "Bump semver from 7.5.3 to 7.5.4", "state": "merged", "createdAt": "2026-02-13T06:00:00Z", "mergedAt": "2026-02-14T08:30:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/93" },
+      { "number": 90, "title": "Bump braces from 3.0.2 to 3.0.3", "state": "merged", "createdAt": "2026-02-12T06:00:00Z", "mergedAt": "2026-02-13T10:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/90" },
+      { "number": 87, "title": "Bump tar from 6.1.15 to 6.2.1", "state": "merged", "createdAt": "2026-02-10T06:00:00Z", "mergedAt": "2026-02-11T14:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/87" },
+      { "number": 84, "title": "Bump webpack-dev-middleware from 5.3.3 to 5.3.4", "state": "merged", "createdAt": "2026-02-08T06:00:00Z", "mergedAt": "2026-02-09T09:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/84" },
+      { "number": 81, "title": "Bump ip from 2.0.0 to 2.0.1", "state": "merged", "createdAt": "2026-02-05T06:00:00Z", "mergedAt": "2026-02-06T11:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/81" },
+      { "number": 78, "title": "Bump postcss from 8.4.31 to 8.4.35", "state": "merged", "createdAt": "2026-02-02T06:00:00Z", "mergedAt": "2026-02-03T09:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/78" },
+      { "number": 75, "title": "Bump tough-cookie from 4.1.2 to 4.1.4", "state": "merged", "createdAt": "2026-01-28T06:00:00Z", "mergedAt": "2026-01-29T10:00:00Z", "url": "https://github.com/boffinwritescode/dashbuild/pull/75" }
+    ],
+    "severityCounts": { "critical": 1, "high": 3, "medium": 5, "low": 4 },
+    "ecosystemCounts": { "npm": 11, "pip": 2 }
+  }
+}

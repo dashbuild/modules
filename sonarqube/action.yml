@@ -1,0 +1,102 @@
+name: "Dashbuild SonarQube"
+description: "Fetch SonarQube/SonarCloud metrics and generate a report page for Dashbuild"
+
+inputs:
+  token:
+    description: "SonarQube/SonarCloud API token. Required unless data-file is set."
+    required: false
+    default: ""
+  host-url:
+    description: "SonarQube server URL"
+    required: false
+    default: "https://sonarcloud.io"
+  project-key:
+    description: "SonarQube project key. Required unless data-file is set."
+    required: false
+    default: ""
+  metrics:
+    description: "Comma-separated list of metric keys to fetch from the API"
+    required: false
+    default: "bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density,ncloc,security_hotspots,reliability_rating,security_rating,sqale_rating"
+  areas:
+    description: "Comma-separated metric areas to display. Default: coverage,duplicated_lines_density,code_smells,bugs,vulnerabilities,sqale_rating. Opt-in extras: ncloc,reliability_rating,security_rating,security_hotspots"
+    required: false
+    default: "coverage,duplicated_lines_density,code_smells,bugs,vulnerabilities,sqale_rating"
+  cache-key:
+    description: "GitHub Actions cache key for historical data. Set to enable data-over-time tracking. Example: dashbuild-sonarqube-history"
+    required: false
+    default: ""
+  retention-days:
+    description: "Number of days of historical data to keep. Entries older than this are pruned before caching. 0 = keep all. Default: 90"
+    required: false
+    default: "90"
+  data-file:
+    description: "Path to a pre-built JSON data file. When set, the API fetch is skipped and this file is used directly. Intended for development, demos, and CI self-testing where real SonarQube credentials are unavailable."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Use pre-built data file
+      if: inputs.data-file != ''
+      shell: bash
+      run: |
+        SLUG=$(node -e "console.log(JSON.parse(require('fs').readFileSync('${{ github.action_path }}/module.json','utf-8')).slug)")
+        TARGET="${DASHBUILD_DIR}/src/data/${SLUG}.json"
+        mkdir -p "$(dirname "${TARGET}")"
+        cp "${{ inputs.data-file }}" "${TARGET}"
+        echo "::notice::Using pre-built data file: ${{ inputs.data-file }}"
+
+    - name: Restore historical data from cache
+      if: inputs.data-file == '' && inputs.cache-key != ''
+      uses: actions/cache/restore@v4
+      with:
+        path: .dashbuild-sonarqube-cache
+        key: ${{ inputs.cache-key }}
+
+    - name: Fetch SonarQube metrics
+      if: inputs.data-file == ''
+      shell: bash
+      env:
+        SONAR_TOKEN: ${{ inputs.token }}
+        SONAR_HOST_URL: ${{ inputs.host-url }}
+        SONAR_PROJECT_KEY: ${{ inputs.project-key }}
+        SONAR_METRICS: ${{ inputs.metrics }}
+        SONAR_AREAS: ${{ inputs.areas }}
+        SONAR_CACHE_FILE: ${{ inputs.cache-key != '' && '.dashbuild-sonarqube-cache/sonarqube.json' || '' }}
+        SONAR_RETENTION_DAYS: ${{ inputs.retention-days }}
+      run: |
+        bash "${{ github.action_path }}/scripts/fetch-sonarqube.sh"
+
+    - name: Save historical data to cache
+      if: inputs.data-file == '' && inputs.cache-key != ''
+      uses: actions/cache/save@v4
+      with:
+        path: .dashbuild-sonarqube-cache
+        key: ${{ inputs.cache-key }}-${{ github.run_id }}
+
+    - name: Resolve Dashbuild root
+      shell: bash
+      run: |
+        _DIR="    "
+        while true; do
+          if [ -f "${_DIR}/package.json" ] && node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.exit(p.name==='dashbuild'?0:1)" "${_DIR}/package.json"; then
+            break
+          fi
+          [ "${_DIR}" = "/" ] && echo "::error::Cannot find Dashbuild root" && exit 1
+          _DIR="$(dirname "${_DIR}")"
+        done
+        echo "DASHBUILD_ROOT=${_DIR}" >> "$GITHUB_ENV"
+
+    - name: Generate report page
+      shell: bash
+      run: node "${DASHBUILD_ROOT}/_shared/lib/generate-page.js" "${{ github.action_path }}"
+
+    - name: Generate overview
+      shell: bash
+      run: node "${{ github.action_path }}/scripts/generate-overview.js"
+
+    - name: Register module
+      shell: bash
+      run: node "${DASHBUILD_ROOT}/_shared/lib/register-module.js" "${{ github.action_path }}"

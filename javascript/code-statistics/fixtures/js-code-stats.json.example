@@ -1,0 +1,115 @@
+{
+  "config": {
+    "areas": [
+      "total_lines",
+      "total_files",
+      "packages",
+      "test_suites",
+      "tests",
+      "tests_passed",
+      "tests_failed",
+      "tests_skipped",
+      "line_coverage",
+      "function_coverage",
+      "branch_coverage"
+    ]
+  },
+  "history": [
+    {
+      "date": "2026-01-01",
+      "metrics": {
+        "total_lines": 8420,
+        "total_files": 42,
+        "packages": 3,
+        "test_suites": 18,
+        "tests": 142,
+        "tests_passed": 138,
+        "tests_failed": 1,
+        "tests_skipped": 3,
+        "line_coverage": 74.2,
+        "function_coverage": 71.8,
+        "branch_coverage": 68.5
+      }
+    },
+    {
+      "date": "2026-01-08",
+      "metrics": {
+        "total_lines": 9100,
+        "total_files": 45,
+        "packages": 3,
+        "test_suites": 20,
+        "tests": 156,
+        "tests_passed": 153,
+        "tests_failed": 1,
+        "tests_skipped": 2,
+        "line_coverage": 77.1,
+        "function_coverage": 74.5,
+        "branch_coverage": 70.2
+      }
+    },
+    {
+      "date": "2026-01-15",
+      "metrics": {
+        "total_lines": 9650,
+        "total_files": 47,
+        "packages": 3,
+        "test_suites": 22,
+        "tests": 168,
+        "tests_passed": 165,
+        "tests_failed": 1,
+        "tests_skipped": 2,
+        "line_coverage": 79.8,
+        "function_coverage": 77.3,
+        "branch_coverage": 73.1
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "metrics": {
+        "total_lines": 10200,
+        "total_files": 50,
+        "packages": 3,
+        "test_suites": 23,
+        "tests": 178,
+        "tests_passed": 175,
+        "tests_failed": 1,
+        "tests_skipped": 2,
+        "line_coverage": 81.5,
+        "function_coverage": 79.8,
+        "branch_coverage": 75.4
+      }
+    },
+    {
+      "date": "2026-01-29",
+      "metrics": {
+        "total_lines": 10500,
+        "total_files": 51,
+        "packages": 3,
+        "test_suites": 24,
+        "tests": 184,
+        "tests_passed": 181,
+        "tests_failed": 1,
+        "tests_skipped": 2,
+        "line_coverage": 82.3,
+        "function_coverage": 81.2,
+        "branch_coverage": 76.1
+      }
+    },
+    {
+      "date": "2026-02-05",
+      "metrics": {
+        "total_lines": 10230,
+        "total_files": 48,
+        "packages": 3,
+        "test_suites": 24,
+        "tests": 187,
+        "tests_passed": 182,
+        "tests_failed": 2,
+        "tests_skipped": 3,
+        "line_coverage": 82.79,
+        "function_coverage": 82.16,
+        "branch_coverage": 76.85
+      }
+    }
+  ]
+}
