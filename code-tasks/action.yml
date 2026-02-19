@@ -1,0 +1,50 @@
+name: "Dashbuild Code Tasks"
+description: "Scan source code for task comments (TODO, FIXME, HACK, etc.) across all languages and generate a report page for Dashbuild"
+
+inputs:
+  source-path:
+    description: "Directory to scan for source files"
+    required: false
+    default: "."
+  patterns:
+    description: "Comma-separated glob patterns for source files to scan. Defaults to a broad set covering most languages."
+    required: false
+    default: ""
+  tags:
+    description: "Comma-separated task tags to search for in comments"
+    required: false
+    default: "TODO,FIXME,HACK,REVIEW,NOTE,BUG,XXX"
+  context-lines:
+    description: "Number of lines of context to include above and below each task comment"
+    required: false
+    default: "5"
+  task-regex:
+    description: "Custom regex pattern for matching task comments. Must have two capture groups: (1) the tag, (2) the description text. Overrides the default comment-style detection when set."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Scan source for task comments
+      shell: bash
+      env:
+        SOURCE_PATH: ${{ inputs.source-path }}
+        SOURCE_PATTERNS: ${{ inputs.patterns }}
+        TASK_TAGS: ${{ inputs.tags }}
+        CONTEXT_LINES: ${{ inputs.context-lines }}
+        TASK_REGEX: ${{ inputs.task-regex }}
+      run: |
+        node "${{ github.action_path }}/scripts/scan-tasks.js"
+
+    - name: Generate report page
+      shell: bash
+      run: node "${{ github.action_path }}/../_shared/lib/generate-page.js" "${{ github.action_path }}"
+
+    - name: Generate overview
+      shell: bash
+      run: node "${{ github.action_path }}/scripts/generate-overview.js"
+
+    - name: Register module
+      shell: bash
+      run: node "${{ github.action_path }}/../_shared/lib/register-module.js" "${{ github.action_path }}"

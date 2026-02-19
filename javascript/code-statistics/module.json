@@ -1,0 +1,6 @@
+{
+  "name": "Code Statistics",
+  "slug": "js-code-stats",
+  "section": "JavaScript",
+  "description": "Line counts, test suites, test totals, file counts, package counts, and other code statistics"
+}
