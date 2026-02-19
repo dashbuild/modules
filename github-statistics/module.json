@@ -1,0 +1,6 @@
+{
+  "name": "GitHub Statistics",
+  "slug": "github-statistics",
+  "section": "Integrations",
+  "description": "Repository health metrics from the GitHub API"
+}

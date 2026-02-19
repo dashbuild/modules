@@ -1,0 +1,6 @@
+{
+  "name": "GitHub Dependabot",
+  "slug": "dependabot",
+  "section": "Integrations",
+  "description": "Dependency vulnerabilities, code scanning, and secret scanning alerts from GitHub"
+}

@@ -1,0 +1,230 @@
+{
+  "config": {
+    "areas": ["prs", "issues", "workflows", "releases", "commits", "contributors", "branches", "languages", "community"],
+    "repository": "boffinwritescode/dashbuild",
+    "lookbackDays": 90,
+    "visibility": "public"
+  },
+  "history": [
+    {
+      "date": "2026-02-10",
+      "metrics": {
+        "prs_opened": 8,
+        "prs_merged": 6,
+        "prs_closed": 1,
+        "prs_open_count": 7,
+        "pr_cycle_time_median_hours": 22.4,
+        "pr_review_time_median_hours": 5.8,
+        "issues_opened": 5,
+        "issues_closed": 3,
+        "issues_open_count": 28,
+        "workflow_success_rate": 91.3,
+        "workflow_p50_duration_min": 3.8,
+        "workflow_p95_duration_min": 11.2,
+        "releases_total": 12,
+        "days_since_last_release": 8,
+        "commits_last_week": 35,
+        "net_churn_last_week": 420,
+        "contributors_active_30d": 4,
+        "branches_total": 14,
+        "branches_stale": 5,
+        "stars_total": 142,
+        "forks_total": 19,
+        "traffic_views_14d": 380,
+        "traffic_uniques_14d": 95
+      }
+    },
+    {
+      "date": "2026-02-12",
+      "metrics": {
+        "prs_opened": 10,
+        "prs_merged": 9,
+        "prs_closed": 0,
+        "prs_open_count": 6,
+        "pr_cycle_time_median_hours": 19.1,
+        "pr_review_time_median_hours": 4.5,
+        "issues_opened": 7,
+        "issues_closed": 5,
+        "issues_open_count": 26,
+        "workflow_success_rate": 93.7,
+        "workflow_p50_duration_min": 3.5,
+        "workflow_p95_duration_min": 10.1,
+        "releases_total": 13,
+        "days_since_last_release": 4,
+        "commits_last_week": 41,
+        "net_churn_last_week": 310,
+        "contributors_active_30d": 5,
+        "branches_total": 13,
+        "branches_stale": 4,
+        "stars_total": 148,
+        "forks_total": 20,
+        "traffic_views_14d": 410,
+        "traffic_uniques_14d": 108
+      }
+    },
+    {
+      "date": "2026-02-14",
+      "metrics": {
+        "prs_opened": 11,
+        "prs_merged": 10,
+        "prs_closed": 1,
+        "prs_open_count": 5,
+        "pr_cycle_time_median_hours": 18.5,
+        "pr_review_time_median_hours": 4.2,
+        "issues_opened": 6,
+        "issues_closed": 8,
+        "issues_open_count": 23,
+        "workflow_success_rate": 94.2,
+        "workflow_p50_duration_min": 3.2,
+        "workflow_p95_duration_min": 9.8,
+        "releases_total": 14,
+        "days_since_last_release": 2,
+        "commits_last_week": 45,
+        "net_churn_last_week": 280,
+        "contributors_active_30d": 6,
+        "branches_total": 12,
+        "branches_stale": 3,
+        "stars_total": 153,
+        "forks_total": 21,
+        "traffic_views_14d": 450,
+        "traffic_uniques_14d": 120
+      }
+    },
+    {
+      "date": "2026-02-17",
+      "metrics": {
+        "prs_opened": 12,
+        "prs_merged": 10,
+        "prs_closed": 1,
+        "prs_open_count": 5,
+        "pr_cycle_time_median_hours": 16.3,
+        "pr_review_time_median_hours": 3.8,
+        "issues_opened": 4,
+        "issues_closed": 7,
+        "issues_open_count": 20,
+        "workflow_success_rate": 96.1,
+        "workflow_p50_duration_min": 2.9,
+        "workflow_p95_duration_min": 8.5,
+        "releases_total": 15,
+        "days_since_last_release": 3,
+        "commits_last_week": 42,
+        "net_churn_last_week": 340,
+        "contributors_active_30d": 5,
+        "branches_total": 12,
+        "branches_stale": 3,
+        "stars_total": 156,
+        "forks_total": 23,
+        "traffic_views_14d": 490,
+        "traffic_uniques_14d": 132
+      }
+    }
+  ],
+  "details": {
+    "openPrs": [
+      { "number": 87, "title": "feat: add GitHub statistics module", "author": "boffinwritescode", "createdAt": "2026-02-16T10:30:00Z", "updatedAt": "2026-02-17T08:15:00Z", "labels": ["enhancement"], "url": "https://github.com/boffinwritescode/dashbuild/pull/87" },
+      { "number": 85, "title": "fix: handle empty coverage files gracefully", "author": "contributor-a", "createdAt": "2026-02-14T14:20:00Z", "updatedAt": "2026-02-15T09:00:00Z", "labels": ["bug"], "url": "https://github.com/boffinwritescode/dashbuild/pull/85" },
+      { "number": 82, "title": "chore: update dependencies", "author": "dependabot[bot]", "createdAt": "2026-02-10T06:00:00Z", "updatedAt": "2026-02-10T06:00:00Z", "labels": ["dependencies"], "url": "https://github.com/boffinwritescode/dashbuild/pull/82" },
+      { "number": 78, "title": "feat: add Jira integration module", "author": "contributor-b", "createdAt": "2026-02-01T11:45:00Z", "updatedAt": "2026-02-05T16:30:00Z", "labels": ["enhancement", "wip"], "url": "https://github.com/boffinwritescode/dashbuild/pull/78" },
+      { "number": 71, "title": "docs: comprehensive API documentation", "author": "contributor-c", "createdAt": "2026-01-20T08:00:00Z", "updatedAt": "2026-01-25T12:00:00Z", "labels": ["documentation"], "url": "https://github.com/boffinwritescode/dashbuild/pull/71" }
+    ],
+    "prAgingBuckets": { "0-7": 2, "7-14": 1, "14-30": 1, "30+": 1 },
+    "issueAgingBuckets": { "0-7": 4, "7-14": 3, "14-30": 5, "30+": 8 },
+    "workflowBreakdown": [
+      { "name": "Dashbuild Self-Test", "successRate": 96.5, "p50": 2.8, "p95": 7.2, "runs": 85, "lastStatus": "success" },
+      { "name": "Publish", "successRate": 98.0, "p50": 1.5, "p95": 3.8, "runs": 24, "lastStatus": "success" },
+      { "name": "CodeQL Analysis", "successRate": 92.3, "p50": 4.1, "p95": 12.5, "runs": 42, "lastStatus": "success" },
+      { "name": "Dependency Review", "successRate": 100.0, "p50": 0.8, "p95": 1.2, "runs": 65, "lastStatus": "success" }
+    ],
+    "topContributors": [
+      { "login": "boffinwritescode", "commits": 185, "additions": 12400, "deletions": 4200 },
+      { "login": "contributor-a", "commits": 62, "additions": 4800, "deletions": 1900 },
+      { "login": "contributor-b", "commits": 34, "additions": 2100, "deletions": 800 },
+      { "login": "contributor-c", "commits": 18, "additions": 950, "deletions": 320 },
+      { "login": "contributor-d", "commits": 8, "additions": 420, "deletions": 150 }
+    ],
+    "staleBranches": [
+      "feature/old-notifications",
+      "fix/deprecated-api-cleanup",
+      "experiment/new-chart-lib"
+    ],
+    "languages": {
+      "JavaScript": 58200,
+      "CSS": 24800,
+      "Shell": 8400,
+      "HTML": 3200,
+      "Markdown": 15600
+    },
+    "communityProfile": {
+      "hasReadme": true,
+      "hasLicense": true,
+      "hasContributing": false,
+      "hasCodeOfConduct": false,
+      "hasCodeowners": true,
+      "hasSecurity": false,
+      "hasIssueTemplate": true,
+      "hasPrTemplate": true
+    },
+    "releases": [
+      { "tag": "v0.15.0", "name": "v0.15.0 — GitHub Statistics", "date": "2026-02-14T18:00:00Z", "prerelease": false, "url": "https://github.com/boffinwritescode/dashbuild/releases/tag/v0.15.0" },
+      { "tag": "v0.14.2", "name": "v0.14.2 — Bug fixes", "date": "2026-02-10T12:00:00Z", "prerelease": false, "url": "https://github.com/boffinwritescode/dashbuild/releases/tag/v0.14.2" },
+      { "tag": "v0.14.1", "name": "v0.14.1 — Hotfix", "date": "2026-02-06T09:00:00Z", "prerelease": false, "url": "https://github.com/boffinwritescode/dashbuild/releases/tag/v0.14.1" },
+      { "tag": "v0.14.0", "name": "v0.14.0 — Shared components", "date": "2026-02-02T15:00:00Z", "prerelease": false, "url": "https://github.com/boffinwritescode/dashbuild/releases/tag/v0.14.0" },
+      { "tag": "v0.14.0-rc.1", "name": "v0.14.0-rc.1", "date": "2026-01-30T10:00:00Z", "prerelease": true, "url": "https://github.com/boffinwritescode/dashbuild/releases/tag/v0.14.0-rc.1" }
+    ],
+    "commitActivity": [
+      { "week": "2026-01-06", "total": 28, "additions": 2100, "deletions": 800 },
+      { "week": "2026-01-13", "total": 32, "additions": 2800, "deletions": 1100 },
+      { "week": "2026-01-20", "total": 25, "additions": 1900, "deletions": 700 },
+      { "week": "2026-01-27", "total": 38, "additions": 3200, "deletions": 1400 },
+      { "week": "2026-02-03", "total": 41, "additions": 3600, "deletions": 1500 },
+      { "week": "2026-02-10", "total": 42, "additions": 3400, "deletions": 1200 }
+    ],
+    "traffic": {
+      "views": [
+        { "timestamp": "2026-02-03T00:00:00Z", "count": 32, "uniques": 12 },
+        { "timestamp": "2026-02-04T00:00:00Z", "count": 28, "uniques": 10 },
+        { "timestamp": "2026-02-05T00:00:00Z", "count": 45, "uniques": 18 },
+        { "timestamp": "2026-02-06T00:00:00Z", "count": 38, "uniques": 14 },
+        { "timestamp": "2026-02-07T00:00:00Z", "count": 22, "uniques": 8 },
+        { "timestamp": "2026-02-08T00:00:00Z", "count": 15, "uniques": 6 },
+        { "timestamp": "2026-02-09T00:00:00Z", "count": 18, "uniques": 7 },
+        { "timestamp": "2026-02-10T00:00:00Z", "count": 42, "uniques": 16 },
+        { "timestamp": "2026-02-11T00:00:00Z", "count": 35, "uniques": 13 },
+        { "timestamp": "2026-02-12T00:00:00Z", "count": 48, "uniques": 19 },
+        { "timestamp": "2026-02-13T00:00:00Z", "count": 41, "uniques": 15 },
+        { "timestamp": "2026-02-14T00:00:00Z", "count": 52, "uniques": 21 },
+        { "timestamp": "2026-02-15T00:00:00Z", "count": 19, "uniques": 8 },
+        { "timestamp": "2026-02-16T00:00:00Z", "count": 55, "uniques": 22 }
+      ],
+      "clones": [
+        { "timestamp": "2026-02-03T00:00:00Z", "count": 5, "uniques": 3 },
+        { "timestamp": "2026-02-04T00:00:00Z", "count": 3, "uniques": 2 },
+        { "timestamp": "2026-02-05T00:00:00Z", "count": 8, "uniques": 5 },
+        { "timestamp": "2026-02-06T00:00:00Z", "count": 4, "uniques": 3 },
+        { "timestamp": "2026-02-10T00:00:00Z", "count": 6, "uniques": 4 },
+        { "timestamp": "2026-02-12T00:00:00Z", "count": 9, "uniques": 6 },
+        { "timestamp": "2026-02-14T00:00:00Z", "count": 7, "uniques": 5 }
+      ],
+      "referrers": [
+        { "referrer": "github.com", "count": 210, "uniques": 65 },
+        { "referrer": "google.com", "count": 85, "uniques": 32 },
+        { "referrer": "reddit.com", "count": 42, "uniques": 18 },
+        { "referrer": "news.ycombinator.com", "count": 28, "uniques": 12 }
+      ],
+      "paths": [
+        { "path": "/boffinwritescode/dashbuild", "title": "Repository", "count": 180, "uniques": 55 },
+        { "path": "/boffinwritescode/dashbuild/blob/main/README.md", "title": "README", "count": 95, "uniques": 40 },
+        { "path": "/boffinwritescode/dashbuild/issues", "title": "Issues", "count": 45, "uniques": 22 }
+      ]
+    },
+    "starHistory": [
+      { "date": "2026-02-03", "cumulative": 140 },
+      { "date": "2026-02-05", "cumulative": 143 },
+      { "date": "2026-02-08", "cumulative": 146 },
+      { "date": "2026-02-10", "cumulative": 148 },
+      { "date": "2026-02-12", "cumulative": 150 },
+      { "date": "2026-02-14", "cumulative": 153 },
+      { "date": "2026-02-17", "cumulative": 156 }
+    ]
+  }
+}
