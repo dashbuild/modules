@@ -1,0 +1,127 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-wide.css");
+
+/*
+ * Dependabot module theme
+ *
+ * GitHub dark palette with severity-specific colors matching GitHub's UI.
+ * Font: Inter for UI.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ── Custom properties ─────────────────────────────────────────────── */
+
+:root {
+  /* Base theme — GitHub dark */
+  --theme-foreground: #e6edf3;
+  --theme-foreground-muted: #8b949e;
+  --theme-foreground-faint: #6e7681;
+  --theme-foreground-fainter: #3d444d;
+  --theme-foreground-faintest: #2d333b;
+  --theme-foreground-focus: #58a6ff;
+  --theme-background: #151b23;
+  --theme-background-alt: #212830;
+
+  /* Typography */
+  --theme-font: "Inter", system-ui, sans-serif;
+  --theme-font-alt: "Inter", system-ui, sans-serif;
+
+  /* GitHub accent colors */
+  --gh-blue: #58a6ff;
+  --gh-green: #3fb950;
+  --gh-red: #f85149;
+  --gh-orange: #d29922;
+  --gh-purple: #bc8cff;
+  --gh-gray: #8b949e;
+
+  /* GitHub severity colors */
+  --gh-severity-critical: #f85149;
+  --gh-severity-high: #db6d28;
+  --gh-severity-medium: #d29922;
+  --gh-severity-low: #8b949e;
+
+  /* Code scanning severity */
+  --gh-scanning-error: #f85149;
+  --gh-scanning-warning: #d29922;
+  --gh-scanning-note: #58a6ff;
+
+  /* Borders & dividers */
+  --gh-border: #3d444d;
+  --gh-border-muted: #2d333b;
+
+  /* Dashbuild shared component variables */
+  --dash-border: var(--gh-border);
+  --dash-divider: var(--gh-border);
+  --dash-accent-primary: var(--gh-blue);
+  --dash-accent-secondary: var(--gh-green);
+
+  /* Trend colors */
+  --dash-trend-up: #3fb950;
+  --dash-trend-down: #f85149;
+  --dash-trend-flat: #8b949e;
+
+  /* Chart colors */
+  --gh-chart-blue: #58a6ff;
+  --gh-chart-green: #3fb950;
+  --gh-chart-red: #f85149;
+  --gh-chart-orange: #d29922;
+  --gh-chart-gray: #8b949e;
+}
+
+/* ── Base elements ─────────────────────────────────────────────────── */
+
+body {
+  font-family: var(--theme-font);
+}
+
+/* ── Top bar divider ───────────────────────────────────────────────── */
+
+#observablehq-header {
+  border-bottom: 1px solid var(--gh-border);
+}
+
+/* ── Section headings ──────────────────────────────────────────────── */
+
+h1 {
+  color: var(--theme-foreground);
+  font-weight: 600;
+}
+
+/* ── Module-specific: border-muted variable ──────────────────────── */
+
+:root {
+  --dash-border-muted: var(--gh-border-muted);
+}
+
+/* ── Code scanning location blocks ─────────────────────────────────── */
+
+.code-location {
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0.25rem 0;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.75rem;
+}
+
+.code-location .file-header {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  background: var(--theme-background-alt);
+  border-bottom: 1px solid var(--gh-border);
+  color: var(--gh-blue);
+  font-size: 0.75rem;
+}
+
+.code-location .line-ref {
+  color: var(--theme-foreground-muted);
+  margin-left: 0.3rem;
+}
+
+/* ── Skeleton overrides ────────────────────────────────────────────── */
+
+.skel-cards-4 {
+  min-height: 100px;
+}

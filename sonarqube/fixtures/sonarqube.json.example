@@ -1,0 +1,107 @@
+{
+  "config": {
+    "areas": [
+      "coverage",
+      "duplicated_lines_density",
+      "code_smells",
+      "bugs",
+      "vulnerabilities",
+      "ncloc",
+      "reliability_rating",
+      "security_rating",
+      "sqale_rating"
+    ]
+  },
+  "history": [
+    {
+      "date": "2026-01-01",
+      "metrics": {
+        "bugs": 12,
+        "vulnerabilities": 5,
+        "code_smells": 87,
+        "coverage": 62.1,
+        "duplicated_lines_density": 8.4,
+        "ncloc": 10200,
+        "security_hotspots": 6,
+        "reliability_rating": 4,
+        "security_rating": 3,
+        "sqale_rating": 2
+      }
+    },
+    {
+      "date": "2026-01-08",
+      "metrics": {
+        "bugs": 10,
+        "vulnerabilities": 4,
+        "code_smells": 74,
+        "coverage": 65.3,
+        "duplicated_lines_density": 7.1,
+        "ncloc": 10850,
+        "security_hotspots": 5,
+        "reliability_rating": 3,
+        "security_rating": 3,
+        "sqale_rating": 2
+      }
+    },
+    {
+      "date": "2026-01-15",
+      "metrics": {
+        "bugs": 8,
+        "vulnerabilities": 3,
+        "code_smells": 63,
+        "coverage": 69.8,
+        "duplicated_lines_density": 5.9,
+        "ncloc": 11300,
+        "security_hotspots": 4,
+        "reliability_rating": 3,
+        "security_rating": 2,
+        "sqale_rating": 2
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "metrics": {
+        "bugs": 6,
+        "vulnerabilities": 2,
+        "code_smells": 55,
+        "coverage": 72.4,
+        "duplicated_lines_density": 4.8,
+        "ncloc": 11900,
+        "security_hotspots": 3,
+        "reliability_rating": 3,
+        "security_rating": 2,
+        "sqale_rating": 1
+      }
+    },
+    {
+      "date": "2026-01-29",
+      "metrics": {
+        "bugs": 5,
+        "vulnerabilities": 2,
+        "code_smells": 48,
+        "coverage": 75.1,
+        "duplicated_lines_density": 4.2,
+        "ncloc": 12300,
+        "security_hotspots": 3,
+        "reliability_rating": 3,
+        "security_rating": 2,
+        "sqale_rating": 1
+      }
+    },
+    {
+      "date": "2026-02-05",
+      "metrics": {
+        "bugs": 3,
+        "vulnerabilities": 1,
+        "code_smells": 42,
+        "coverage": 78.4,
+        "duplicated_lines_density": 3.2,
+        "ncloc": 12847,
+        "security_hotspots": 2,
+        "reliability_rating": 3,
+        "security_rating": 2,
+        "sqale_rating": 1
+      }
+    }
+  ]
+}

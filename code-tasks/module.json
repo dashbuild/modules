@@ -1,0 +1,6 @@
+{
+  "name": "Code Tasks",
+  "slug": "code-tasks",
+  "section": "Reports",
+  "description": "Scan source code for TODO, FIXME, HACK, REVIEW, NOTE and other task comments across all languages"
+}

@@ -1,0 +1,89 @@
+name: "Dashbuild GitHub Statistics"
+description: "Fetch repository health metrics from the GitHub API and generate a report page for Dashbuild"
+
+inputs:
+  token:
+    description: "GitHub token (PAT or GITHUB_TOKEN). The default GITHUB_TOKEN works for most endpoints. Traffic endpoints require push access."
+    required: false
+    default: ${{ github.token }}
+  repository:
+    description: "GitHub repository in owner/repo format"
+    required: false
+    default: ${{ github.repository }}
+  areas:
+    description: "Comma-separated sections to fetch/display. Options: prs,issues,workflows,releases,commits,contributors,branches,languages,community,traffic,stars,forks"
+    required: false
+    default: "prs,issues,workflows,releases,commits,contributors,branches,languages,community"
+  lookback-days:
+    description: "How far back to fetch PR/issue/workflow data (in days)"
+    required: false
+    default: "90"
+  max-review-prs:
+    description: "Maximum number of merged PRs to fetch review data for (controls API usage). Set to 0 to skip review fetching."
+    required: false
+    default: "30"
+  cache-key:
+    description: "GitHub Actions cache key for historical data. Set to enable data-over-time tracking. Example: dashbuild-github-stats-history"
+    required: false
+    default: ""
+  retention-days:
+    description: "Number of days of historical data to keep. Entries older than this are pruned before caching. 0 = keep all. Default: 90"
+    required: false
+    default: "90"
+  data-file:
+    description: "Path to a pre-built JSON data file. When set, the API fetch is skipped and this file is used directly."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Use pre-built data file
+      if: inputs.data-file != ''
+      shell: bash
+      run: |
+        SLUG=$(node -e "console.log(JSON.parse(require('fs').readFileSync('${{ github.action_path }}/module.json','utf-8')).slug)")
+        TARGET="${DASHBUILD_DIR}/src/data/${SLUG}.json"
+        mkdir -p "$(dirname "${TARGET}")"
+        cp "${{ inputs.data-file }}" "${TARGET}"
+        echo "::notice::Using pre-built data file: ${{ inputs.data-file }}"
+
+    - name: Restore historical data from cache
+      if: inputs.data-file == '' && inputs.cache-key != ''
+      uses: actions/cache/restore@v4
+      with:
+        path: .dashbuild-github-stats-cache
+        key: ${{ inputs.cache-key }}
+
+    - name: Fetch GitHub statistics
+      if: inputs.data-file == ''
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        GITHUB_STATS_REPOSITORY: ${{ inputs.repository }}
+        GITHUB_STATS_AREAS: ${{ inputs.areas }}
+        GITHUB_STATS_LOOKBACK_DAYS: ${{ inputs.lookback-days }}
+        GITHUB_STATS_MAX_REVIEW_PRS: ${{ inputs.max-review-prs }}
+        GITHUB_STATS_CACHE_FILE: ${{ inputs.cache-key != '' && '.dashbuild-github-stats-cache/github-statistics.json' || '' }}
+        GITHUB_STATS_RETENTION_DAYS: ${{ inputs.retention-days }}
+      run: |
+        node "${{ github.action_path }}/scripts/fetch-github-stats.js"
+
+    - name: Save historical data to cache
+      if: inputs.data-file == '' && inputs.cache-key != ''
+      uses: actions/cache/save@v4
+      with:
+        path: .dashbuild-github-stats-cache
+        key: ${{ inputs.cache-key }}-${{ github.run_id }}
+
+    - name: Generate report page
+      shell: bash
+      run: node "${{ github.action_path }}/../_shared/lib/generate-page.js" "${{ github.action_path }}"
+
+    - name: Generate overview
+      shell: bash
+      run: node "${{ github.action_path }}/scripts/generate-overview.js"
+
+    - name: Register module
+      shell: bash
+      run: node "${{ github.action_path }}/../_shared/lib/register-module.js" "${{ github.action_path }}"

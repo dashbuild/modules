@@ -1,0 +1,138 @@
+{
+  "config": {
+    "areas": [
+      "coverage",
+      "duplicated_lines_density",
+      "code_smells",
+      "bugs",
+      "vulnerabilities",
+      "ncloc",
+      "reliability_rating",
+      "security_rating",
+      "sqale_rating",
+      "security_hotspots"
+    ]
+  },
+  "history": [
+    {
+      "date": "2025-11-04",
+      "metrics": {
+        "bugs": 18,
+        "vulnerabilities": 9,
+        "code_smells": 134,
+        "coverage": 41.2,
+        "duplicated_lines_density": 14.7,
+        "ncloc": 8420,
+        "security_hotspots": 11,
+        "reliability_rating": 4,
+        "security_rating": 4,
+        "sqale_rating": 3
+      }
+    },
+    {
+      "date": "2025-11-18",
+      "metrics": {
+        "bugs": 15,
+        "vulnerabilities": 7,
+        "code_smells": 118,
+        "coverage": 46.8,
+        "duplicated_lines_density": 12.3,
+        "ncloc": 8950,
+        "security_hotspots": 9,
+        "reliability_rating": 4,
+        "security_rating": 3,
+        "sqale_rating": 3
+      }
+    },
+    {
+      "date": "2025-12-02",
+      "metrics": {
+        "bugs": 12,
+        "vulnerabilities": 5,
+        "code_smells": 97,
+        "coverage": 54.1,
+        "duplicated_lines_density": 10.1,
+        "ncloc": 9600,
+        "security_hotspots": 7,
+        "reliability_rating": 3,
+        "security_rating": 3,
+        "sqale_rating": 2
+      }
+    },
+    {
+      "date": "2025-12-16",
+      "metrics": {
+        "bugs": 9,
+        "vulnerabilities": 4,
+        "code_smells": 82,
+        "coverage": 61.5,
+        "duplicated_lines_density": 8.6,
+        "ncloc": 10250,
+        "security_hotspots": 5,
+        "reliability_rating": 3,
+        "security_rating": 2,
+        "sqale_rating": 2
+      }
+    },
+    {
+      "date": "2026-01-06",
+      "metrics": {
+        "bugs": 7,
+        "vulnerabilities": 3,
+        "code_smells": 64,
+        "coverage": 68.3,
+        "duplicated_lines_density": 6.4,
+        "ncloc": 10900,
+        "security_hotspots": 4,
+        "reliability_rating": 3,
+        "security_rating": 2,
+        "sqale_rating": 2
+      }
+    },
+    {
+      "date": "2026-01-20",
+      "metrics": {
+        "bugs": 5,
+        "vulnerabilities": 2,
+        "code_smells": 51,
+        "coverage": 73.7,
+        "duplicated_lines_density": 4.9,
+        "ncloc": 11480,
+        "security_hotspots": 3,
+        "reliability_rating": 3,
+        "security_rating": 2,
+        "sqale_rating": 1
+      }
+    },
+    {
+      "date": "2026-02-03",
+      "metrics": {
+        "bugs": 3,
+        "vulnerabilities": 1,
+        "code_smells": 38,
+        "coverage": 79.2,
+        "duplicated_lines_density": 3.5,
+        "ncloc": 12100,
+        "security_hotspots": 2,
+        "reliability_rating": 2,
+        "security_rating": 1,
+        "sqale_rating": 1
+      }
+    },
+    {
+      "date": "2026-02-15",
+      "metrics": {
+        "bugs": 2,
+        "vulnerabilities": 0,
+        "code_smells": 29,
+        "coverage": 83.6,
+        "duplicated_lines_density": 2.8,
+        "ncloc": 12740,
+        "security_hotspots": 1,
+        "reliability_rating": 2,
+        "security_rating": 1,
+        "sqale_rating": 1
+      }
+    }
+  ]
+}
